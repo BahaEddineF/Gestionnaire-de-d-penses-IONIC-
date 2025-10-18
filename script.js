@@ -42,5 +42,28 @@ btnAjouter.addEventListener("click", () => {
     let newIcon = document.createElement("ion-icon");
     newIcon.name = "close-outline";
     newIcon.color="danger";
-  
-  
+
+    let newLabel = document.createElement("ion-label");
+    newLabel.textContent = `${inpIntitule.value} : ${inpMontant.value}¥`;
+
+    let newItem = document.createElement("ion-item");
+    newItem.appendChild(newBadge);
+    newItem.appendChild(newLabel);
+    newItem.appendChild(newIcon);
+
+    let.Item.amount= inpMontant.value;
+
+    newIcon.addEventListener("click", () => {
+    supprimerDepenses(newItem);
+  });
+
+  total += +inpMontant.value;
+  spanTotal.textContent = `${total} ¥`;
+  effacer();
+});
+function effacer() {
+  inpIntitule.value = "";
+  inpMontant.value = "";
+  categorie.value = "";
+}
+
