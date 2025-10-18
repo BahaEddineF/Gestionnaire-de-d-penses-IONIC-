@@ -67,3 +67,54 @@ function effacer() {
   categorie.value = "";
 }
 
+
+async function supprimerDepenses(itemToDelete) {
+  const alert = document.createElement("ion-alert");
+  alert.header = "Supprimer une dépense";
+  alert.message = "Que voulez-vous faire ?";
+  alert.buttons = [
+    {
+      text: "Supprimer cette dépense",
+      handler: () => {
+        listeDepenses.removeChild(itemToDelete);
+        total = total - itemToDelete.amount;
+        spanTotal.textContent = `${total} ¥`;
+      },
+    },
+    {
+      text: "Supprimer toutes les dépenses",
+      handler: () => {
+        listeDepenses.innerHTML = `   <ion-item>
+        <ion-badge class="category-badge" color="medium"
+        >💼 Aucune dépense</ion-badge
+        >
+        
+        <ion-label>Aucune dépense enregistrée</ion-label>
+        </ion-item>`;
+        total = 0;
+        spanTotal.textContent = `${total} ¥`;
+      },
+    },
+    {
+      text: "Annuler",
+      role: "cancel",
+    },
+  ];
+
+  document.body.appendChild(alert);
+  await alert.present();
+}
+async function showAlertError() {
+  const alert = document.createElement("ion-alert");
+  alert.header = "Erreur de saisie";
+  alert.message = "Veuillez saisir les trois champs...";
+  alert.buttons = [
+    {
+      text: "Ok",
+      role: "cancel",
+    },
+  ];
+
+  document.body.appendChild(alert);
+  await alert.present();
+}
