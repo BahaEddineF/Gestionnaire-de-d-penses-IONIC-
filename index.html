@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css"
+    />
+    <style>
+      .category-alimentation {
+        --ion-color-primary: #4caf50;
+      }
+      .category-transport {
+        --ion-color-primary: #2196f3;
+      }
+      .category-loisirs {
+        --ion-color-primary: #ff9800;
+      }
+      .category-sante {
+        --ion-color-primary: #f44336;
+      }
+      .category-education {
+        --ion-color-primary: #9c27b0;
+      }
+      .category-autres {
+        --ion-color-primary: #607d8b;
+      }
+
+      .category-badge {
+        font-size: 0.75rem;
+        padding: 4px 8px;
+        border-radius: 12px;
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <ion-app>
+      <ion-header
+        ><ion-toolbar color="secondary">
+          <ion-title>Gestionnaire de dépenses</ion-title>
+        </ion-toolbar></ion-header
+      >
+      <ion-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col size-md="6" offset-md="3">
+              <ion-card>
+                <ion-card-header>
+                  <ion-card-title>Nouvelle dépense</ion-card-title>
+                </ion-card-header>
+
+                <ion-card-content>
+                  <ion-input
+                    id="intitule"
+                    type="text"
+                    label="Intitulé"
+                  ></ion-input>
+                  <ion-input
+                    id="montant"
+                    type="number"
+                    label="montant"
+                  ></ion-input>
+
+                  <ion-select id="categorie" label="Catégorie">
+                    <ion-select-option value="alimentation"
+                      >🍽️ Alimentation</ion-select-option
+                    >
+                    <ion-select-option value="transport"
+                      >🚗 Transport</ion-select-option
+                    >
+                    <ion-select-option value="loisirs"
+                      >🎮 Loisirs</ion-select-option
+                    >
+                    <ion-select-option value="santé"
+                      >⚕️ Santé</ion-select-option
+                    >
+                    <ion-select-option value="education"
+                      >📚 Éducation</ion-select-option
+                    >
+                    <ion-select-option value="autres"
+                      >📦 Autres</ion-select-option
+                    >
+                  </ion-select>
+                  <div class="ion-text-right ion-margin-top">
+                    <ion-button id="btn-add" color="success" fill="outline"
+                      >Ajouter
+                      <ion-icon name="add-outline" slot="start"></ion-icon
+                    ></ion-button>
+                    <ion-button id="btn-reset" color="danger" fill="outline">
+                      <ion-icon name="add-outline" slot="end"></ion-icon
+                      >Réinitialiser</ion-button
+                    >
+                  </div>
+                </ion-card-content>
+                </ion-card>
+                <ion-list id="liste-dep">
+                    <ion-item>
+                        <ion-badge class="category-badge" color="medium">💼 Aucune dépense</ion-badge>
+                        <ion-label>Aucune dépense ajoutée pour le moment.</ion-label>
+                    </ion-item>
+                </ion-list>
+                <div class="ion-margin-vertical">
+                     <strong
+                  >Total des dépenses :
+                  <span id="total-dep">... $</span></strong
+                >
+                    </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-content>
+      <!-- <ion-footer>Footer</ion-footer> -->
+    </ion-app>
+    <script src="script.js"></script>
+  </body>
+</html>
