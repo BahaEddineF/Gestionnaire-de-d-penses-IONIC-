@@ -18,7 +18,7 @@ const categoriesConfig = {
 let showPasDeDepenses = true;
 let total = 0;
 
-//btnAjouter.addEventListener("click", clickHandler);
+//btnAjouter.addEventListener("click", clickHandler());
 btnAjouter.addEventListener("click", () => {
   if (
     !inpIntitule.value.trim().length ||
@@ -37,36 +37,42 @@ btnAjouter.addEventListener("click", () => {
   let newBadge = document.createElement("ion-badge");
   newBadge.className = "category-badge";
   newBadge.color = categoriesConfig[categorie.value]["color"];
-  newBadge.textContent = `${categoriesConfig[categorie.value]["emoji"]} ${categorie.value
-    }`;
-    let newIcon = document.createElement("ion-icon");
-    newIcon.name = "close-outline";
-    newIcon.color="danger";
+  newBadge.textContent = `${categoriesConfig[categorie.value]["emoji"]} ${
+    categorie.value
+  }`;
 
-    let newLabel = document.createElement("ion-label");
-    newLabel.textContent = `${inpIntitule.value} : ${inpMontant.value}¥`;
+  let newIcon = document.createElement("ion-icon");
+  newIcon.name = "close-outline";
+  newIcon.color = "danger";
 
-    let newItem = document.createElement("ion-item");
-    newItem.appendChild(newBadge);
-    newItem.appendChild(newLabel);
-    newItem.appendChild(newIcon);
+  let newLabel = document.createElement("ion-label");
+  newLabel.textContent = `${inpIntitule.value} : ${inpMontant.value}¥`;
 
-    let.Item.amount= inpMontant.value;
+  let newItem = document.createElement("ion-item");
+  newItem.appendChild(newBadge);
+  newItem.appendChild(newLabel);
+  newItem.appendChild(newIcon);
 
-    newIcon.addEventListener("click", () => {
+  newItem.amount = inpMontant.value;
+
+  newIcon.addEventListener("click", () => {
     supprimerDepenses(newItem);
   });
+
+  listeDepenses.appendChild(newItem);
 
   total += +inpMontant.value;
   spanTotal.textContent = `${total} ¥`;
   effacer();
 });
+
+btnReset.addEventListener("click", effacer);
+
 function effacer() {
   inpIntitule.value = "";
   inpMontant.value = "";
   categorie.value = "";
 }
-
 
 async function supprimerDepenses(itemToDelete) {
   const alert = document.createElement("ion-alert");
